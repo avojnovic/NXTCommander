@@ -17,13 +17,17 @@
  *   along with MINDdroid.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-package com.lego.minddroid;
+package android.nxt;
 
-import android.content.res.AssetFileDescriptor;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
-import java.io.*;
 
 /**
  * The tasks have to be done in this thread, so the user interface

@@ -17,7 +17,9 @@
  *   along with MINDdroid.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-package com.lego.minddroid;
+package android.nxt;
+
+import android.nxt.R;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -31,10 +33,10 @@ public class Options {
 
 	private Dialog mDialog;
 	String mSelectionMessage;
-	SplashMenu splashMenu;
+	HomeMenu splashMenu;
 
 	public Options(Activity myActivity) {
-		this.splashMenu=(SplashMenu) myActivity;
+		this.splashMenu=(HomeMenu) myActivity;
 		mDialog = new Dialog(myActivity);
 		mDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		mDialog.setContentView(R.layout.options);
@@ -46,24 +48,27 @@ public class Options {
 		final RadioButton robot_type_3 = (RadioButton) mDialog.findViewById(R.id.robot_type_3);
 		final RadioButton robot_type_4 = (RadioButton) mDialog.findViewById(R.id.robot_type_4);
 		
-		switch (splashMenu.getRobotType()) {
 
-			case R.id.robot_type_2:
-				robot_type_2.setChecked(true);
-				break;
-
-			case R.id.robot_type_3:
-				robot_type_3.setChecked(true);
-				break;
-
-			case R.id.robot_type_4:
-				robot_type_4.setChecked(true);
-				break;
-
-			default:
-				robot_type_1.setChecked(true);
-				break;
-		}
+		robot_type_1.setChecked(true);
+		
+//		switch (splashMenu.getRobotType()) {
+//
+//			case R.id.robot_type_2:
+//				robot_type_2.setChecked(true);
+//				break;
+//
+//			case R.id.robot_type_3:
+//				robot_type_3.setChecked(true);
+//				break;
+//
+//			case R.id.robot_type_4:
+//				robot_type_4.setChecked(true);
+//				break;
+//
+//			default:
+//				robot_type_1.setChecked(true);
+//				break;
+//		}
 
 		robot_type_1.setOnClickListener(radio_listener);
 		robot_type_2.setOnClickListener(radio_listener);
@@ -81,7 +86,7 @@ public class Options {
 			// Perform action on clicks
 			RadioButton rb = (RadioButton) v;
 			rb.setChecked(true);
-			splashMenu.setRobotType(rb.getId());
+			//splashMenu.setRobotType(rb.getId());
 			Toast.makeText(mDialog.getContext(), mSelectionMessage + " " + rb.getText(), Toast.LENGTH_SHORT).show();
 			mDialog.dismiss();
 		}

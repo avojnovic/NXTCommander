@@ -15,34 +15,42 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with MINDdroid.  If not, see <http://www.gnu.org/licenses/>.
-**/
+ **/
 
-package com.lego.minddroid;
+package android.nxt;
+
+import android.nxt.R;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.util.Log;
 
-public class StartSound extends Thread {
+public class StartSound extends Thread
+{
 	private Context myContext;
 	AudioManager myAudioManager;
 
-	public StartSound(Context myContext) {
+	public StartSound(Context myContext)
+	{
 		this.myContext = myContext;
 		myAudioManager = (AudioManager) myContext.getSystemService(Context.AUDIO_SERVICE);
 	}
 
 	@Override
-	public void run() {
-		if (myAudioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
-			int ringVolume = myAudioManager.getStreamVolume(AudioManager.STREAM_RING);	
+	public void run()
+	{
+		if (myAudioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL)
+		{
+			int ringVolume = myAudioManager.getStreamVolume(AudioManager.STREAM_RING);
 			MediaPlayer myMediaPlayer = MediaPlayer.create(myContext, R.raw.startdroid);
 			myMediaPlayer.start();
-			myMediaPlayer.setVolume( ((float) ringVolume)/10f,  ((float) ringVolume)/10f);
-			try {
+			myMediaPlayer.setVolume(((float) ringVolume) / 10f, ((float) ringVolume) / 10f);
+			try
+			{
 				Thread.sleep(2000);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e)
+			{
 			}
 			myMediaPlayer.stop();
 		}

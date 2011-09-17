@@ -16,7 +16,7 @@
  * MINDdroid. If not, see <http://www.gnu.org/licenses/>.
  **/
 
-package com.lego.minddroid;
+package android.nxt;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,6 +43,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
+import android.nxt.R;
+
 /**
  * This class is for talking to a LEGO NXT robot and controlling it via
  * bluetooth and the built in acceleration sensor. The communciation to the
@@ -63,12 +65,12 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 	private ProgressDialog connectingProgressDialog;
 	private Handler btcHandler;
 	private Menu myMenu;
-	private GameView mView;
+	private NXTCommandingView mView;
 	private Activity thisActivity;
 	private boolean btErrorPending = false;
 	private boolean pairing;
 	private static boolean btOnByUs = false;
-	int mRobotType;
+	//int mRobotType;
 	int motorLeft;
 	private int directionLeft; // +/- 1
 	int motorRight;
@@ -125,15 +127,14 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 	{
 		super.onCreate(savedInstanceState);
 		thisActivity = this;
-		mRobotType = this.getIntent().getIntExtra(
-				SplashMenu.MINDDROID_ROBOT_TYPE, R.id.robot_type_1);
+		//mRobotType = this.getIntent().getIntExtra(SplashMenu.MINDDROID_ROBOT_TYPE, R.id.robot_type_1);
 		setUpByType();
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		StartSound mySound = new StartSound(this);
 		mySound.start();
 		// setup our view, give it focus and display.
-		mView = new GameView(getApplicationContext(), this);
+		mView = new NXTCommandingView(getApplicationContext(), this);
 		mView.setFocusable(true);
 		setContentView(mView);
 		reusableToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
@@ -148,34 +149,13 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 	 */
 	private void setUpByType()
 	{
-		switch (mRobotType)
-		{
-			case R.id.robot_type_2:
-				motorLeft = BTCommunicator.MOTOR_B;
-				directionLeft = 1;
-				motorRight = BTCommunicator.MOTOR_C;
-				directionRight = 1;
-				motorAction = BTCommunicator.MOTOR_A;
-				directionAction = 1;
-				break;
-			case R.id.robot_type_3:
-				motorLeft = BTCommunicator.MOTOR_C;
-				directionLeft = -1;
-				motorRight = BTCommunicator.MOTOR_B;
-				directionRight = -1;
-				motorAction = BTCommunicator.MOTOR_A;
-				directionAction = 1;
-				break;
-			default:
-				// default
-				motorLeft = BTCommunicator.MOTOR_B;
-				directionLeft = 1;
-				motorRight = BTCommunicator.MOTOR_C;
-				directionRight = 1;
-				motorAction = BTCommunicator.MOTOR_A;
-				directionAction = 1;
-				break;
-		}
+		motorLeft = BTCommunicator.MOTOR_C;
+		directionLeft = -1;
+		motorRight = BTCommunicator.MOTOR_B;
+		directionRight = -1;
+		motorAction = BTCommunicator.MOTOR_A;
+		directionAction = 1;
+		
 	}
 
 	/**
@@ -280,55 +260,55 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 	 */
 	public void actionButtonPressed()
 	{
-		if (myBTCommunicator != null)
-		{
-			mView.getThread().mActionPressed = true;
-
-			// Wolfgang Amadeus Mozart
-			// "Zauberfloete - Der Vogelfaenger bin ich ja"
-			if (mRobotType != R.id.robot_type_4)
-			{
-				sendBTCmessage(BTCommunicator.NO_DELAY, BTCommunicator.DO_BEEP,
-						392, 100);
-				sendBTCmessage(200, BTCommunicator.DO_BEEP, 440, 100);
-				sendBTCmessage(400, BTCommunicator.DO_BEEP, 494, 100);
-				sendBTCmessage(600, BTCommunicator.DO_BEEP, 523, 100);
-				sendBTCmessage(800, BTCommunicator.DO_BEEP, 587, 300);
-				sendBTCmessage(1200, BTCommunicator.DO_BEEP, 523, 300);
-				sendBTCmessage(1600, BTCommunicator.DO_BEEP, 494, 300);
-			}
-
-			// MOTOR ACTION: forth an back
-			switch (mRobotType)
-			{
-
-				case R.id.robot_type_3:
-					// Robogator: bite the user ;-)
-					for (int bite = 0; bite < 3; bite++)
-					{
-						sendBTCmessage(bite * 400, motorAction,
-								75 * directionAction, 0);
-						sendBTCmessage(bite * 400 + 200, motorAction, -75
-								* directionAction, 0);
-					}
-					sendBTCmessage(3 * 400, motorAction, 0, 0);
-					break;
-
-				case R.id.robot_type_4:
-					// lejosMINDdroid: just send the message for button press
-					sendBTCmessage(BTCommunicator.NO_DELAY,
-							BTCommunicator.DO_ACTION, 0, 0);
-					break;
-
-				default:
-					// other robots: 180 degrees forth and back
-					sendBTCmessage(BTCommunicator.NO_DELAY, motorAction,
-							75 * directionAction, 0);
-					sendBTCmessage(500, motorAction, -75 * directionAction, 0);
-					sendBTCmessage(1000, motorAction, 0, 0);
-					break;
-			}
-		}
+//		if (myBTCommunicator != null)
+//		{
+//			mView.getThread().mActionPressed = true;
+//
+//			// Wolfgang Amadeus Mozart
+//			// "Zauberfloete - Der Vogelfaenger bin ich ja"
+//			if (mRobotType != R.id.robot_type_4)
+//			{
+//				sendBTCmessage(BTCommunicator.NO_DELAY, BTCommunicator.DO_BEEP,
+//						392, 100);
+//				sendBTCmessage(200, BTCommunicator.DO_BEEP, 440, 100);
+//				sendBTCmessage(400, BTCommunicator.DO_BEEP, 494, 100);
+//				sendBTCmessage(600, BTCommunicator.DO_BEEP, 523, 100);
+//				sendBTCmessage(800, BTCommunicator.DO_BEEP, 587, 300);
+//				sendBTCmessage(1200, BTCommunicator.DO_BEEP, 523, 300);
+//				sendBTCmessage(1600, BTCommunicator.DO_BEEP, 494, 300);
+//			}
+//
+//			// MOTOR ACTION: forth an back
+//			switch (mRobotType)
+//			{
+//
+//				case R.id.robot_type_3:
+//					// Robogator: bite the user ;-)
+//					for (int bite = 0; bite < 3; bite++)
+//					{
+//						sendBTCmessage(bite * 400, motorAction,
+//								75 * directionAction, 0);
+//						sendBTCmessage(bite * 400 + 200, motorAction, -75
+//								* directionAction, 0);
+//					}
+//					sendBTCmessage(3 * 400, motorAction, 0, 0);
+//					break;
+//
+//				case R.id.robot_type_4:
+//					// lejosMINDdroid: just send the message for button press
+//					sendBTCmessage(BTCommunicator.NO_DELAY,
+//							BTCommunicator.DO_ACTION, 0, 0);
+//					break;
+//
+//				default:
+//					// other robots: 180 degrees forth and back
+//					sendBTCmessage(BTCommunicator.NO_DELAY, motorAction,
+//							75 * directionAction, 0);
+//					sendBTCmessage(500, motorAction, -75 * directionAction, 0);
+//					sendBTCmessage(1000, motorAction, 0, 0);
+//					break;
+//			}
+//		}
 	}
 
 	/**
@@ -337,16 +317,16 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 	 */
 	public void actionButtonLongPress()
 	{
-		if (myBTCommunicator != null)
-		{
-			mView.getThread().mActionPressed = true;
-
-			if (programList.size() == 0)
-				showToast(R.string.no_files_found, Toast.LENGTH_SHORT);
-
-			FileDialog myFileDialog = new FileDialog(this, programList);
-			myFileDialog.show(mRobotType == R.id.robot_type_4);
-		}
+//		if (myBTCommunicator != null)
+//		{
+//			mView.getThread().mActionPressed = true;
+//
+//			if (programList.size() == 0)
+//				showToast(R.string.no_files_found, Toast.LENGTH_SHORT);
+//
+//			FileDialog myFileDialog = new FileDialog(this, programList);
+//			myFileDialog.show(mRobotType == R.id.robot_type_4);
+//		}
 
 	}
 
@@ -583,7 +563,7 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 				if (btOnByUs)
 					showToast(R.string.bt_off_message, Toast.LENGTH_SHORT);
 
-				SplashMenu.quitApplication();
+				HomeMenu.quitApplication();
 				return true;
 		}
 
@@ -721,7 +701,7 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 						}
 						if (isLejosMindDroid)
 						{
-							mRobotType = R.id.robot_type_4;
+							//mRobotType = R.id.robot_type_4;
 							setUpByType();
 						}
 						// afterwards we search for all files on the robot
@@ -731,32 +711,30 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 
 					break;
 
-				case BTCommunicator.FIND_FILES:
-
-					if (myBTCommunicator != null)
-					{
-						byte[] fileMessage = myBTCommunicator
-								.getReturnMessage();
-						String fileName = new String(fileMessage, 4, 20);
-						fileName = fileName.replaceAll("\0", "");
-
-						if (mRobotType == R.id.robot_type_4
-								|| fileName.endsWith(".nxj")
-								|| fileName.endsWith(".rxe"))
-						{
-							programList.add(fileName);
-						}
-
-						// find next entry with appropriate handle,
-						// limit number of programs (in case of error (endless
-						// loop))
-						if (programList.size() <= MAX_PROGRAMS)
-							sendBTCmessage(BTCommunicator.NO_DELAY,
-									BTCommunicator.FIND_FILES, 1,
-									byteToInt(fileMessage[3]));
-					}
-
-					break;
+//				case BTCommunicator.FIND_FILES:
+//
+//					if (myBTCommunicator != null)
+//					{
+//						byte[] fileMessage = myBTCommunicator
+//								.getReturnMessage();
+//						String fileName = new String(fileMessage, 4, 20);
+//						fileName = fileName.replaceAll("\0", "");
+//
+//						if (mRobotType == R.id.robot_type_4 || fileName.endsWith(".nxj") || fileName.endsWith(".rxe"))
+//						{
+//							programList.add(fileName);
+//						}
+//
+//						// find next entry with appropriate handle,
+//						// limit number of programs (in case of error (endless
+//						// loop))
+//						if (programList.size() <= MAX_PROGRAMS)
+//							sendBTCmessage(BTCommunicator.NO_DELAY,
+//									BTCommunicator.FIND_FILES, 1,
+//									byteToInt(fileMessage[3]));
+//					}
+//
+//					break;
 
 				case BTCommunicator.PROGRAM_NAME:
 					if (myBTCommunicator != null)
@@ -915,22 +893,21 @@ public class MINDdroid extends Activity implements BTConnectable, TextToSpeech.O
 			// indicate this.
 			int result = mTts.setLanguage(Locale.US);
 			// Try this someday for some interesting results.
-			if (result == TextToSpeech.LANG_MISSING_DATA
-					|| result == TextToSpeech.LANG_NOT_SUPPORTED)
-			{
-				// Language data is missing or the language is not supported.
-				if (mRobotType == R.id.robot_type_4)
-					showToast(R.string.tts_language_not_supported,
-							Toast.LENGTH_LONG);
-			}
+//			if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+//			{
+//				// Language data is missing or the language is not supported.
+////				if (mRobotType == R.id.robot_type_4)
+////					showToast(R.string.tts_language_not_supported,
+////							Toast.LENGTH_LONG);
+//			}
 		}
-		else
-		{
-			// Initialization failed.
-			if (mRobotType == R.id.robot_type_4)
-				showToast(R.string.tts_initialization_failure,
-						Toast.LENGTH_LONG);
-		}
+//		else
+//		{
+//			// Initialization failed.
+//			if (mRobotType == R.id.robot_type_4)
+//				showToast(R.string.tts_initialization_failure,
+//						Toast.LENGTH_LONG);
+//		}
 	}
 
 }

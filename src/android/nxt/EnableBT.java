@@ -1,4 +1,4 @@
-package com.lego.minddroid;
+package android.nxt;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;

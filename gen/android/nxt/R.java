@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.lego.minddroid;
+package android.nxt;
 
 public final class R {
     public static final class attr {
@@ -53,18 +53,11 @@ public final class R {
         public static final int AboutPeople=0x7f060001;
         public static final int NXJUploader_layout=0x7f060009;
         public static final int ScrollView=0x7f060000;
-        public static final int TutorialImageView=0x7f060017;
-        public static final int TutorialTextView=0x7f060015;
-        public static final int TutorialTextView1=0x7f060018;
-        public static final int TutorialTextView2=0x7f060019;
-        public static final int TutorialTextView3=0x7f06001a;
-        public static final int TutorialTextView4=0x7f06001b;
         public static final int button_scan=0x7f060008;
         public static final int file_button=0x7f06000d;
         public static final int heading_tv=0x7f06000a;
         public static final int legalImage=0x7f060002;
         public static final int new_devices=0x7f060007;
-        public static final int nextButton=0x7f060016;
         public static final int nxj_file_name=0x7f06000e;
         public static final int nxt_button=0x7f06000b;
         public static final int nxt_name=0x7f06000c;
@@ -84,10 +77,6 @@ public final class R {
         public static final int device_name=0x7f030002;
         public static final int nxjuploader=0x7f030003;
         public static final int options=0x7f030004;
-        public static final int tutorial_01=0x7f030005;
-        public static final int tutorial_02=0x7f030006;
-        public static final int tutorial_03=0x7f030007;
-        public static final int tutorial_04=0x7f030008;
     }
     public static final class raw {
         public static final int startdroid=0x7f040000;

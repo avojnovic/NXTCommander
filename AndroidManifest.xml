@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.lego.minddroid" android:versionCode="3" android:installLocation="auto"
+	package="android.nxt" android:versionCode="3" android:installLocation="auto"
 	android:versionName="1.2">
-	<uses-sdk android:minSdkVersion="7" />
+	<uses-sdk android:minSdkVersion="8" />
 	<application android:icon="@drawable/logo_new" android:label="@string/app_name" android:debuggable="true">
 		<activity android:name=".MINDdroid" android:label="@string/app_name"
 			android:screenOrientation="portrait">
@@ -14,8 +14,7 @@
 			android:screenOrientation="portrait" android:label="@string/select_device"
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
-		<activity android:name=".SplashMenu" android:label="@string/app_name"
-			android:screenOrientation="portrait">
+		<activity android:name="android.nxt.HomeMenu" android:label="@string/app_name" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
