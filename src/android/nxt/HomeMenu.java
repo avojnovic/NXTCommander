@@ -35,10 +35,10 @@ public class HomeMenu extends Activity
 
 	public static void quitApplication()
 	{
-		if (MINDdroid.isBtOnByUs())
+		if (NXTCommander.isBtOnByUs())
 		{
 			BluetoothAdapter.getDefaultAdapter().disable();
-			MINDdroid.setBtOnByUs(false);
+			NXTCommander.setBtOnByUs(false);
 		}
 		
 		splashMenu.finish();
@@ -69,10 +69,10 @@ public class HomeMenu extends Activity
 	@Override
 	protected void onPause()
 	{
-		if (MINDdroid.isBtOnByUs())
+		if (NXTCommander.isBtOnByUs())
 		{
 			BluetoothAdapter.getDefaultAdapter().disable();
-			MINDdroid.setBtOnByUs(false);
+			NXTCommander.setBtOnByUs(false);
 		}
 		super.onPause();
 	}

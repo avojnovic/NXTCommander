@@ -95,7 +95,7 @@ public class HomeMenuView extends View
 			if (event.getY() > getStartYPos() && event.getY() <= getStartYPos() + ic_splash_start.getHeight()
 					&& event.getX() > getStartXPos() && event.getX() <= getStartXPos() + ic_splash_start.getWidth())
 			{
-				Intent playGame = new Intent(splashMenuActivity.getBaseContext(), MINDdroid.class);
+				Intent playGame = new Intent(splashMenuActivity.getBaseContext(), NXTCommander.class);
 				splashMenuActivity.startActivity(playGame);
 			}
 		}

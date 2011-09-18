@@ -468,7 +468,7 @@ public class NXTCommandingView extends SurfaceView implements
 				{
 
 					// is it time to update motor movement?
-					if (mElapsedSinceNXTCommand > MINDdroid.UPDATE_TIME)
+					if (mElapsedSinceNXTCommand > NXTCommander.UPDATE_TIME)
 					{
 						// calculate and send command to move motors
 						doMotorMovement(-mNumAcY, -mNumAcX);
@@ -798,7 +798,7 @@ public class NXTCommandingView extends SurfaceView implements
 	/** used for logging */
 	private static final String TAG = NXTCommandingView.class.getName();;
 
-	private MINDdroid mActivity;
+	private NXTCommander mActivity;
 
 	/** The thread that actually draws the animation */
 	private NXTCommandingThread thread;
@@ -829,7 +829,7 @@ public class NXTCommandingView extends SurfaceView implements
 
 	Context context;
 
-	public NXTCommandingView(Context context, MINDdroid uiActivity)
+	public NXTCommandingView(Context context, NXTCommander uiActivity)
 	{
 		super(context);
 
