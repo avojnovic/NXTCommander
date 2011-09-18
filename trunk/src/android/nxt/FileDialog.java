@@ -63,7 +63,7 @@ class FileDialog {
 	}
 	
 	private void startProgram(int number) {
-        ((MINDdroid) myActivity).startProgram((String) programs[number]);
+        ((NXTCommander) myActivity).startProgram((String) programs[number]);
 	}
 		    
 }
