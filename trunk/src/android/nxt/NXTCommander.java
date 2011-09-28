@@ -150,9 +150,9 @@ public class NXTCommander extends Activity implements BTConnectable, TextToSpeec
 	private void setUpByType()
 	{
 		motorLeft = BTCommunicator.MOTOR_C;
-		directionLeft = -1;
+		directionLeft = 1;
 		motorRight = BTCommunicator.MOTOR_B;
-		directionRight = -1;
+		directionRight = 1;
 		motorAction = BTCommunicator.MOTOR_A;
 		directionAction = 1;
 		
@@ -260,9 +260,9 @@ public class NXTCommander extends Activity implements BTConnectable, TextToSpeec
 	 */
 	public void actionButtonPressed()
 	{
-//		if (myBTCommunicator != null)
-//		{
-//			mView.getThread().mActionPressed = true;
+		if (myBTCommunicator != null)
+		{
+			mView.getThread().mActionPressed = true;
 //
 //			// Wolfgang Amadeus Mozart
 //			// "Zauberfloete - Der Vogelfaenger bin ich ja"
@@ -302,13 +302,13 @@ public class NXTCommander extends Activity implements BTConnectable, TextToSpeec
 //
 //				default:
 //					// other robots: 180 degrees forth and back
-//					sendBTCmessage(BTCommunicator.NO_DELAY, motorAction,
-//							75 * directionAction, 0);
-//					sendBTCmessage(500, motorAction, -75 * directionAction, 0);
-//					sendBTCmessage(1000, motorAction, 0, 0);
+					sendBTCmessage(BTCommunicator.NO_DELAY, motorAction,
+					75 * directionAction, 0);
+					sendBTCmessage(500, motorAction, -75 * directionAction, 0);
+					sendBTCmessage(1000, motorAction, 0, 0);
 //					break;
 //			}
-//		}
+		}
 	}
 
 	/**
