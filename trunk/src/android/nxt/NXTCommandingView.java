@@ -299,7 +299,8 @@ public class NXTCommandingView extends SurfaceView implements
 				if (thread.isInGoal())
 				{ // icon is in goal
 					mInGoal = true;
-					mGrowAdjust = calcGrowAdjust(mX, mY);
+					//mGrowAdjust = calcGrowAdjust(mX, mY);ALAN
+					mGrowAdjust = ICON_MAX_SIZE;
 				}
 				else
 				{
@@ -307,7 +308,7 @@ public class NXTCommandingView extends SurfaceView implements
 					if (mInGoal)
 					{// was in goal before
 						mInGoal = false;
-						vibrate();
+						//vibrate(); ALAN
 					}
 				}
 
