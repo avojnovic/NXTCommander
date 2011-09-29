@@ -131,8 +131,10 @@ public class NXTCommander extends Activity implements BTConnectable, TextToSpeec
 		setUpByType();
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		StartSound mySound = new StartSound(this);
-		mySound.start();
+		//StartSound mySound = new StartSound(this);
+		//mySound.start();ALAN
+		
+		
 		// setup our view, give it focus and display.
 		mView = new NXTCommandingView(getApplicationContext(), this);
 		mView.setFocusable(true);
