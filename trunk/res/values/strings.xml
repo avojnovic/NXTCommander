@@ -24,15 +24,9 @@
     <string name="disconnect">Desconectar</string>
     <string name="quit">Salir</string>    
     <string name="action">Acción</string>   
-    <string name="next">Siguiente</string>
-    <string name="options">Robot Type</string>  
-    <string name="upload">Upload NXJ-File</string>  
-    <string name="model_type_selected">Model type set to:</string>   
+    <string name="next">Siguiente</string>   
     
-    <!-- file dialog and message -->
-    <string name="no_files_found">No files found on robot!</string>    
-    <string name="file_dialog_title_1">Start/Stop a program</string>    
-    <string name="file_dialog_title_2">Start a program</string>    
+    <!-- file dialog and message -->    
 
     <!-- bluetooth messages -->
     <string name="connecting_please_wait">Conectando...</string>
@@ -43,9 +37,6 @@
     <string name="problem_at_receiving">Error al recibir un mensaje</string>  
 
     <string name="current_position">Pocisión actual: </string>
-    <string name="lama_title">NXT Commander</string>
-    <string name="lama_accept"></string>
-    <string name="lama_refuse"></string>
 
     <string name="bt_error_dialog_title">Error de Bluetooth </string>    
 
@@ -53,9 +44,7 @@
     <string name="bt_needs_to_be_enabled">Se necesita habilitar el Bluetooth</string>
     
     <!-- Splash Menu -->
-    <string name="tutorial">Tutorial</string>
     <string name="start_button">Iniciar</string>
-    <string name="credits">Creditos</string>
     
     <!--  DeviceListActivity -->
     <string name="scanning">Buscando dispositivos</string>
@@ -70,150 +59,11 @@
     <string name="bt_off_message">Bluetooth apagado</string>
 
     <!--  TTS problems -->
-    <string name="tts_language_not_supported">
-        \"Text to Speech\": Language not supported.
-        Please install SpeechSynthesis Data from Market!
-    </string>
-    
-    <string name="tts_problem_with_language">
-        \"Text to Speech\": Problems with the current language.
-    </string>
-    
-    <string name="tts_initialization_failure">
-        \"Text to Speech\": Initalization failure.
-    </string>
             
     <!-- About Dialog -->
-    <string name="about_general">
-        </string>    
-    <string name="about_license_gpl">
-  </string>    
-    <string name="about_license_lego">
- </string>    
-    <string name="about_people">
-      <b>Idea and code</b>\n
-        Günther Hölzl\nHTL Mössingerstraße, Austria\nhttp://www.htl-klu.at\n\n
-        Shawn Brown\nTokyo, Japan\nhttp://github.com/Shawn-in-Tokyo\n\n
-        <b>UI, menu and a logo design</b>\n
-        Matias Billeschou\nLEGO SYSTEM A/S, Denmark\nhttp://www.lego.com\n\n
-        <b>Icons and overall graphic design</b>\n
-        Vaidas Bagonas\nLEGO SYSTEM A/S, Denmark\nhttp://www.lego.com\n\n
-        <b>Additional code, UX, concept and production</b>\n
-        Harv Stanic\nLEGO SYSTEM A/S, Denmark\nhttp://www.lego.com\n\n
-        <b>Credits to</b>\n
-        Michael Biermann
-    </string>
-    <string name="about_thanks"></string>     
-    <string name="about_LEGO_legal"> </string>     
-    <string name="about_ok">OK</string>
 
     <!-- Tutorial -->
-    <string name="want_to_know_more">
-        Do you want to know more? 
-    </string>    
-    
-    <string name="tutorial_welcome_droid">
-        Welcome, robot!
-    </string>    
-    
-    <string name="tutorial_bubble_01">
-        What is this?
-    </string>    
-
-    <string name="tutorial_bubble_02">
-        Aha, right.\nHow does it work?
-    </string>    
-
-    <string name="tutorial_bubble_03">
-        It looks nice.\nWhat is this little\nblinking square for?
-    </string>    
-
-    <string name="tutorial_bubble_04">
-        Oh, yes. But why?
-    </string>    
-
-    <string name="tutorial_bubble_05">
-        Ok thanks,\nI am off to play now...
-    </string>    
-    
-    <string name="tutorial_a">    
-        MINDdroid is an Android Application for the real-time direct action remote
-        control of LEGO MINDSTORMS NXT robots utilizing direct BlueTooth wireless
-        connection between both devices - Android phone and your NXT robot and built-in 
-        accelerometer and tilt sensors found on most Android powered hand-held phones 
-        and devices.\n
-        No computer or programming needed. Just make sure that your NXT robot 
-        is on and has BlueTooth switched on and it is paired to your hand-held device or a
-        phone beforehand. In the menu the middle button enables you to connect to your
-        NXT robot model. It takes about 2-3 seconds to connect. And it takes 2 to dance...    
-    </string>
-
-    <string name="tutorial_b">    
-        It interacts in a real-time with NXT robot models built to drive and shoot or
-        drive and throw or drive and hit or just drive. By tilting your mobile device down
-        it moves forward. Tilting it up makes your NXT robot model move in the opposite direction
-        or backwards.
-    </string>
-
-    <string name="tutorial_c1">
-        Twisting your hand to the left, it will make your robot turn left and if you twist 
-        right - it will turn right. Easy.
-    </string>
-
-    <string name="tutorial_c2">
-        It has an <b>Action button</b> with two functions: On <b>short press</b> it triggers the motor dedicated
-        for doing simple tasks. For the Shooterbot and the Tribot it drives the motor 180° forward 
-        and back and for the Robogator the mouth will open and close three times. On <b>long press</b> you will
-        be able to select and start a program on the NXT brick, isn\'t that fantastic? It works really
-        well with the easy-to-build starter model Shooterbot, the 8527 Tribot built and the Robogator 
-        from the instructions. Just select your robot type via the menu button on your Android phone
-        when you are on the "Tutorial/Start" screen.
-    </string>
-
-    <string name="tutorial_d">    
-        With the help of advanced firmware for NXT - leJOS NXJ (see http://www.lejos.org) you will be able 
-        to control other robot models like our famed AlphaRex. Also you can have read-out of UltraSonic sensor
-        reading the distance between your robot and an object or a wall, or your robot can recognize 
-        colors and can read them out to you on your phone. Moreover, you can upload leJOS files (.nxj)  
-        directly from your device to your robot. Last but not the least, we supplied two .nxj 
-        files - AlphaRex and MINDGameZ with which, we hope, you can have hours of fun with your NXT.
-        You will find printable tracks for MINDGameZ on http://mindstorms.com. But it\'s also fun to
-        construct new tracks with a thick black marker on a huge sheet of packaging paper... 
-    </string>
-
-    <string name="tutorial_e">    
-        It indicates the direction you are tilting your hand-held device in and the direction
-        your NXT robot moves. Short haptic feedback indicates that you just started driving around.
-        Holding your phone flat in your palm will make NXT robot stand still.  The more you tilt,
-        the faster the robot moves and the faster the square blinks. Cool, huh?    
-    </string>
-
-    <string name="tutorial_f">    
-        Because we can. And we think it is fun. Moreover, it will inspire you and many others
-        to start building cool Applications for interacting with NXT and Android devices and even
-        more cool LEGO MINDSTORMS robots. Because you can!\n\nNow go, try it out, have fun,
-        play well and do not forget to visit us at http://mindstorms.com for more news,
-        info and upcoming appies and goodies.
-    </string>
 
     <!-- NXJ Uploader -->
-    <string name="nxj_uploader_name">NXJUploader</string>
-    <string name="nxj_select_nxt">1. Select NXT</string>
-    <string name="nxj_select_file">2. Select file</string>
-    <string name="nxj_action">3. Upload!</string>
-    <string name="nxj_file_dialog_title">Select a file</string>
-    <string name="nxj_nxt_dialog_title">Select your robot</string>
-    <string name="nxj_please_select_nxt">Please select your NXT first!</string>
-    <string name="nxj_please_select_file">Please select a file first!</string>
-    <string name="nxj_connecting">Connecting, please wait...</string>
-    <string name="nxj_uploading">Uploading, please wait...</string>
-    <string name="nxj_bluetooth_open_error">Unable to open bluetooth connection</string>
-    <string name="nxj_bluetooth_close_error">Error while closing bluetooth connection</string>
-    <string name="nxj_file_open_error">Error while opening the NXJ-file</string>
-    <string name="nxj_uploading_error">Error while uploading the NXJ-file</string>
-    <string name="nxj_other_error">An error occured</string>
-    <string name="nxj_no_files">No NXJ-Files found</string>
-    <string name="nxj_no_paired_NXT">No paired NXT found or Bluetooth switched off</string>
-    <string name="nxj_bluetooth_pairing">After pairing, press UPLOAD button again</string>
             
 </resources>

@@ -9,7 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 
-public class EnableBT extends Activity { //currently unused.  Will be implemented to allow connection without user having to say "Yes turn bt on" (when it isn't)
+public class EnableBT extends Activity { 
 
 	boolean processStarted = false;
 	StatusReciever statusReciever;
@@ -51,7 +51,7 @@ public class EnableBT extends Activity { //currently unused.  Will be implemente
 		 try {
 			unregisterReceiver(statusReciever);
 		} catch (Exception e) {
-			// not registered
+			
 			 
 		}
 	}
@@ -61,7 +61,7 @@ public class EnableBT extends Activity { //currently unused.  Will be implemente
 		try {
 			unregisterReceiver(statusReciever);
 		} catch (Exception e) {
-			// not registered
+			
 		}
 		super.onDestroy();
  
@@ -69,9 +69,7 @@ public class EnableBT extends Activity { //currently unused.  Will be implemente
 
 	public class StatusReciever extends BroadcastReceiver {
 
-		/**
-		 * 
-		 */
+	
 
 		public final static String STATE_CHANGED = "android.bluetooth.adapter.action.STATE_CHANGED";
 

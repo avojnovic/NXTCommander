@@ -1,41 +1,15 @@
-/**
- *   Copyright 2010, 2011 Guenther Hoelzl, Shawn Brown
- *
- *   This file is part of MINDdroid.
- *
- *   MINDdroid is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   MINDdroid is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with MINDdroid.  If not, see <http://www.gnu.org/licenses/>.
-**/
 
 package android.nxt;
 
-
-/**
- * Class for composing the proper messages for simple
- * communication over bluetooth
- */
 public class LCPMessage {
 
-    // the folowing constants were taken from the leJOS project (http://www.lejos.org) 
-    
-    // Command types constants. Indicates type of packet being sent or received.
     public static byte DIRECT_COMMAND_REPLY = 0x00;
     public static byte SYSTEM_COMMAND_REPLY = 0x01;
     public static byte REPLY_COMMAND = 0x02;
-    public static byte DIRECT_COMMAND_NOREPLY = (byte)0x80; // Avoids ~100ms latency
-    public static byte SYSTEM_COMMAND_NOREPLY = (byte)0x81; // Avoids ~100ms latency
+    public static byte DIRECT_COMMAND_NOREPLY = (byte)0x80; 
+    public static byte SYSTEM_COMMAND_NOREPLY = (byte)0x81; 
 
-    // Direct Commands
+
     public static final byte START_PROGRAM = 0x00;
     public static final byte STOP_PROGRAM = 0x01;
     public static final byte PLAY_SOUND_FILE = 0x02;
@@ -56,16 +30,16 @@ public class LCPMessage {
     public static final byte GET_CURRENT_PROGRAM_NAME = 0x11;
     public static final byte MESSAGE_READ = 0x13;
     
-    // NXJ additions
+
     public static byte NXJ_DISCONNECT = 0x20; 
     public static byte NXJ_DEFRAG = 0x21;
     
-    // MINDdroidConnector additions
+
     public static final byte SAY_TEXT = 0x30;
     public static final byte VIBRATE_PHONE = 0x31;
     public static final byte ACTION_BUTTON = 0x32;
     
-    // System Commands:
+    
     public static final byte OPEN_READ = (byte)0x80;
     public static final byte OPEN_WRITE = (byte)0x81;
     public static final byte READ = (byte)0x82;
@@ -90,7 +64,7 @@ public class LCPMessage {
     public static final byte NXJ_FIND_NEXT = (byte)0xB7;
     public static final byte NXJ_PACKET_MODE = (byte)0xff;
     
-    // Error codes    
+    
     public static final byte MAILBOX_EMPTY = (byte)0x40;
     public static final byte FILE_NOT_FOUND = (byte)0x86;
     public static final byte INSUFFICIENT_MEMORY = (byte) 0xFB;
@@ -98,7 +72,7 @@ public class LCPMessage {
     public static final byte UNDEFINED_ERROR = (byte) 0x8A;
     public static final byte NOT_IMPLEMENTED = (byte) 0xFD;
 
-    // Firmware codes
+    
     public static byte[] FIRMWARE_VERSION_LEJOSMINDDROID = { 0x6c, 0x4d, 0x49, 0x64 };
 
     public static byte[] getBeepMessage(int frequency, int duration) {
@@ -106,10 +80,10 @@ public class LCPMessage {
 
         message[0] = DIRECT_COMMAND_NOREPLY;
         message[1] = PLAY_TONE;
-        // Frequency for the tone, Hz (UWORD); Range: 200-14000 Hz
+    
         message[2] = (byte) frequency;
         message[3] = (byte) (frequency >> 8);
-        // Duration of the tone, ms (UWORD)
+    
         message[4] = (byte) duration;
         message[5] = (byte) (duration >> 8);
 
@@ -130,7 +104,7 @@ public class LCPMessage {
 
         message[0] = DIRECT_COMMAND_NOREPLY;
         message[1] = SET_OUTPUT_STATE;
-        // Output port
+    
         message[2] = (byte) motor;
 
         if (speed == 0) {
@@ -141,19 +115,19 @@ public class LCPMessage {
             message[7] = 0;
 
         } else {
-            // Power set option (Range: -100 - 100)
+    
             message[3] = (byte) speed;
-            // Mode byte (Bit-field): MOTORON + BREAK
+    
             message[4] = 0x03;
-            // Regulation mode: REGULATION_MODE_MOTOR_SPEED
+    
             message[5] = 0x01;
-            // Turn Ratio (SBYTE; -100 - 100)
+    
             message[6] = 0x00;
-            // RunState: MOTOR_RUN_STATE_RUNNING
+    
             message[7] = 0x20;
         }
 
-        // TachoLimit: run forever
+    
         message[8] = 0;
         message[9] = 0;
         message[10] = 0;
@@ -166,7 +140,7 @@ public class LCPMessage {
     public static byte[] getMotorMessage(int motor, int speed, int end) {
         byte[] message = getMotorMessage(motor, speed);
 
-        // TachoLimit
+    
         message[8] = (byte) end;
         message[9] = (byte) (end >> 8);
         message[10] = (byte) (end >> 16);
@@ -180,9 +154,9 @@ public class LCPMessage {
 
         message[0] = DIRECT_COMMAND_NOREPLY;
         message[1] = RESET_MOTOR_POSITION;
-        // Output port
+    
         message[2] = (byte) motor;
-        // absolute position
+    
         message[3] = 0;
 
         return message;
@@ -194,7 +168,7 @@ public class LCPMessage {
         message[0] = DIRECT_COMMAND_NOREPLY;
         message[1] = START_PROGRAM;
 
-        // copy programName and end with 0 delimiter
+    
         for (int pos=0; pos<programName.length(); pos++)
             message[2+pos] = (byte) programName.charAt(pos);
 
@@ -226,7 +200,7 @@ public class LCPMessage {
 
         message[0] = DIRECT_COMMAND_REPLY;
         message[1] = GET_OUTPUT_STATE;
-        // Output port
+    
         message[2] = (byte) motor;
 
         return message;
@@ -255,7 +229,7 @@ public class LCPMessage {
         if (findFirst) {
             message[1] = FIND_FIRST;
 
-            // copy searchString and end with 0 delimiter
+    
             for (int pos=0; pos<searchString.length(); pos++)
                 message[2+pos] = (byte) searchString.charAt(pos);
 
@@ -275,12 +249,12 @@ public class LCPMessage {
         message[0] = SYSTEM_COMMAND_REPLY;
         message[1] = OPEN_WRITE;
         
-        // copy programName and end with 0 delimiter
+    
         for (int pos=0; pos<fileName.length(); pos++)
             message[2+pos] = (byte) fileName.charAt(pos);
 
         message[fileName.length()+2] = 0;
-        // copy file size
+    
         message[22] = (byte) fileLength;
         message[23] = (byte) (fileLength >>> 8);
         message[24] = (byte) (fileLength >>> 16);
@@ -294,9 +268,9 @@ public class LCPMessage {
         message[0] = SYSTEM_COMMAND_REPLY;
         message[1] = WRITE;
         
-        // copy handle
+    
         message[2] = (byte) handle;
-        // copy data
+    
         System.arraycopy(data, 0, message, 3, dataLength);
 
         return message;
@@ -308,7 +282,7 @@ public class LCPMessage {
         message[0] = SYSTEM_COMMAND_REPLY;
         message[1] = CLOSE;
         
-        // copy handle
+    
         message[2] = (byte) handle;
 
         return message;
