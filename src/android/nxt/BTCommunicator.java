@@ -1,21 +1,3 @@
-/**
- *   Copyright 2010 Guenther Hoelzl, Shawn Brown
- *
- *   This file is part of MINDdroid.
- *
- *   MINDdroid is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   MINDdroid is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with MINDdroid.  If not, see <http://www.gnu.org/licenses/>.
- **/
 
 package android.nxt;
 
@@ -35,12 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-/**
- * This class is for talking to a LEGO NXT robot via bluetooth. The
- * communciation to the robot is done via LCP (LEGO communication protocol).
- * Objects of this class can either be run as standalone thread or controlled by
- * the owners, i.e. calling the send/recive methods by themselves.
- */
+
 public class BTCommunicator extends Thread
 {
 	public static final int MOTOR_A = 0;
@@ -73,8 +50,7 @@ public class BTCommunicator extends Thread
 	public static final int NO_DELAY = 0;
 
 	private static final UUID SERIAL_PORT_SERVICE_CLASS_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-	// this is the only OUI registered by LEGO, see
-	// http://standards.ieee.org/regauth/oui/index.shtml
+
 	public static final String OUI_LEGO = "00:16:53";
 
 	private Resources mResources;
@@ -113,18 +89,13 @@ public class BTCommunicator extends Thread
 		this.mMACaddress = mMACaddress;
 	}
 
-	/**
-	 * @return The current status of the connection
-	 */
+
 	public boolean isConnected()
 	{
 		return connected;
 	}
 
-	/**
-	 * Creates the connection, waits for incoming messages and dispatches them.
-	 * The thread will be terminated on closing of the connection.
-	 */
+
 	@Override
 	public void run()
 	{
@@ -149,7 +120,7 @@ public class BTCommunicator extends Thread
 			}
 			catch (IOException e)
 			{
-				// don't inform the user when connection is already closed
+				
 				if (connected)
 					sendState(STATE_RECEIVEERROR);
 				return;
@@ -157,14 +128,7 @@ public class BTCommunicator extends Thread
 		}
 	}
 
-	/**
-	 * Create a bluetooth connection with SerialPortServiceClass_UUID
-	 * 
-	 * @see <a href=
-	 *      "http://lejos.sourceforge.net/forum/viewtopic.php?t=1991&highlight=android"
-	 *      /> On error the method either sends a message to it's owner or
-	 *      creates an exception in the case of no message handler.
-	 */
+
 	public void createNXTconnection() throws IOException
 	{
 		try
@@ -203,8 +167,7 @@ public class BTCommunicator extends Thread
 					return;
 				}
 
-				// try another method for connection, this should work on the
-				// HTC desire, credits to Michael Biermann
+				
 				try
 				{
 					Method mMethod = nxtDevice.getClass().getMethod(
@@ -239,16 +202,12 @@ public class BTCommunicator extends Thread
 				return;
 			}
 		}
-		// everything was OK
+	
 		if (uiHandler != null)
 			sendState(STATE_CONNECTED);
 	}
 
-	/**
-	 * Closes the bluetooth connection. On error the method either sends a
-	 * message to it's owner or creates an exception in the case of no message
-	 * handler.
-	 */
+
 	public void destroyNXTconnection() throws IOException
 	{
 		try
@@ -273,29 +232,20 @@ public class BTCommunicator extends Thread
 		}
 	}
 
-	/**
-	 * Sends a message on the opened OutputStream
-	 * 
-	 * @param message
-	 *            , the message as a byte array
-	 */
+
 	public void sendMessage(byte[] message) throws IOException
 	{
 		if (nxtOutputStream == null)
 			throw new IOException();
 
-		// send message length
+		
 		int messageLength = message.length;
 		nxtOutputStream.write(messageLength);
 		nxtOutputStream.write(messageLength >> 8);
 		nxtOutputStream.write(message, 0, message.length);
 	}
 
-	/**
-	 * Receives a message on the opened InputStream
-	 * 
-	 * @return the message
-	 */
+	
 	public byte[] receiveMessage() throws IOException
 	{
 		if (nxtInputStream == null)
@@ -308,13 +258,6 @@ public class BTCommunicator extends Thread
 		return returnMessage;
 	}
 
-	/**
-	 * Sends a message on the opened OutputStream. In case of an error the state
-	 * is sent to the handler.
-	 * 
-	 * @param message
-	 *            , the message as a byte array
-	 */
 	private void sendMessageAndState(byte[] message)
 	{
 		if (nxtOutputStream == null)
@@ -493,7 +436,7 @@ public class BTCommunicator extends Thread
 		uiHandler.sendMessage(myMessage);
 	}
 
-	// receive messages from the UI
+
 	final Handler myHandler = new Handler()
 	{
 		@Override
@@ -543,7 +486,7 @@ public class BTCommunicator extends Thread
 							myMessage.getData().getInt("value2"));
 					break;
 				case DISCONNECT:
-					// send stop messages before closing
+				
 					changeMotorSpeed(MOTOR_A, 0);
 					changeMotorSpeed(MOTOR_B, 0);
 					changeMotorSpeed(MOTOR_C, 0);
